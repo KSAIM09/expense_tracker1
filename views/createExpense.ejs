@@ -1,25 +1,37 @@
 
 <%- include('partials/header')%>
     <%- include("partials/nav")%>
+    <div class="flex items-center justify-center w-[full] h-[full] flex-col">
+        <h1 class="text-blue-700 text-6xl mt-[10px] mb-[20px]"><%=title%></h1>
 
-    <h1><%=title%></h1>
+        <form action="/expense/create" method="post" class="flex flex-col justify-center items-start w-[480px] gap-[10px]">
+            
+            <div>
+                <label class="text-xl mr-4">Enter Amount:</label>
+                <input class="p-[5px]" type="number" name="amount" placeholder="Amount">
+            </div>
+        
+            <div>
+                <label class="text-xl mr-4">Enter Category:</label>
+                <input class="p-[5px]" type="text" name="category" placeholder="Category">
+            </div>
+            
+            <div>
+                <label class="text-xl mr-4">Enter Remark:</label>
+                <input class="p-[5px]" type="text" name="remark" placeholder="Remark">
+            </div>
 
-    <form action="/expense/create" method="post">
+            <div>
+                <label class="text-xl mr-4">Enter Payment Mode:</label>
+                <input class="p-[5px]" type="text" name="paymentmode" placeholder="Payment Mode">
+            </div>
 
-        <label>Enter Amount:</label>
-        <input type="number" name="amount" placeholder="Amount">
+        
 
-        <label>Enter Category:</label>
-        <input type="text" name="category" placeholder="Category">
+        <button class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl">Log Expense</button>
 
-        <label>Enter Remark:</label>
-        <input type="text" name="remark" placeholder="Remark">
-
-        <label>Enter Payment Mode:</label>
-        <input type="text" name="paymentmode" placeholder="Payment Mode">
-
-        <button>Log Expense</button>
-
-    </form>
+        </form>
+    </div>
+    
     
 <%- include('partials/footer')%>

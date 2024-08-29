@@ -1,6 +1,10 @@
-<nav>
-    <a href="/">Home</a>
-    <a href="/expense/create">Create or Log Expense</a>
-    <a href="/expense/show">Watch or Show Expense</a>
-    <a href="/about">About</a>
-</nav>
+
+
+<%- include('header.ejs')%>
+    <div class="w-full flex gap-[40px] h-[50px] bg-gray-400 mb-[10px] items-center px-[40px] justify-center text-xl">
+        <a class="hover:text-white font-semibold" href="/">Home</a>
+        <a class="hover:text-white font-semibold" href="/expense/create">Create/Log Expense</a>
+        <a class="hover:text-white font-semibold" href="/expense/show">Watch/Show Expense</a>
+        <a class="hover:text-white font-semibold" href="/about">About</a>
+    </div>
+<%- include('footer.ejs')%>
