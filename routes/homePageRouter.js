@@ -9,6 +9,8 @@ router.get('/', async(req, res) => {
     }
 })
 
-
+router.get('/about', (req, res) => {
+    res.render('aboutPage', {title: 'About Page'});
+})
 
 module.exports = router;
