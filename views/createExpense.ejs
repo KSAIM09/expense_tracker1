@@ -1,5 +1,25 @@
 
 <%- include('partials/header')%>
     <%- include("partials/nav")%>
+
     <h1><%=title%></h1>
+
+    <form action="/expense/create" method="post">
+
+        <label>Enter Amount:</label>
+        <input type="number" name="amount" placeholder="Amount">
+
+        <label>Enter Category:</label>
+        <input type="text" name="category" placeholder="Category">
+
+        <label>Enter Remark:</label>
+        <input type="text" name="remark" placeholder="Remark">
+
+        <label>Enter Payment Mode:</label>
+        <input type="text" name="paymentmode" placeholder="Payment Mode">
+
+        <button>Log Expense</button>
+
+    </form>
+    
 <%- include('partials/footer')%>

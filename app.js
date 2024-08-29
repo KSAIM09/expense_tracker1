@@ -22,6 +22,7 @@ app.set('views', path.join(__dirname, "views"));
 // For data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+require('./config/dbConnect');
 
 
 // Static file
