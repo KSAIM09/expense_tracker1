@@ -1,0 +1,26 @@
+
+%- include("partials/header")%> <%- include("partials/nav")%>
+
+<h1 class="text-blue-700 text-6xl mt-[10px] mb-[20px]"><%=title%></h1>
+    <form action="/user/signup" method="post" class="flex flex-col justify-center items-start w-[480px] gap-[10px]">
+
+        <div>
+            <label class="text-xl mr-4">Enter Username:</label>
+            <input class="p-[5px]" type="text" name="username" placeholder="Username">
+        </div>
+        
+        <div>
+            <label class="text-xl mr-4">Enter Email:</label>
+            <input class="p-[5px]" type="email" name="email" placeholder="john@doe.com">
+        </div>
+
+        <div>
+            <label class="text-xl mr-4">Enter Password:</label>
+            <input class="p-[5px]" type="password" name="password" placeholder="******">
+        </div>
+
+        <button class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl">Signup User</button>
+    </form>
+
+<!--  -->
+<%- include("partials/footer")%>
