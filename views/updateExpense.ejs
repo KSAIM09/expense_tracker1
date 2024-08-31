@@ -1,39 +1,41 @@
 
+
+
 <%- include('partials/header')%>
     <%- include("partials/nav")%>
     <div class="flex items-center justify-center w-[full] h-[full] flex-col">
         <h1 class="text-blue-700 text-6xl mt-[10px] mb-[20px]"><%=title%></h1>
 
-        <form action="/expense/create" method="post" class="flex flex-col justify-center items-start w-[480px] gap-[10px]">
+        <form action="/expense/update/<%= expense._id%>" method="post" class="flex flex-col justify-center items-start w-[480px] gap-[10px]">
 
             <div>
                 <label class="text-xl mr-4">Enter Title:</label>
-                <input type="text" name="title" placeholder="Title">
+                <input type="text" name="title" placeholder="Title" value="<%= expense.title%>">
             </div>
             
             <div>
                 <label class="text-xl mr-4">Enter Amount:</label>
-                <input class="p-[5px]" type="number" name="amount" placeholder="Amount">
+                <input class="p-[5px]" type="number" name="amount" placeholder="Amount" value="<%= expense.amount%>">
             </div>
         
             <div>
                 <label class="text-xl mr-4">Enter Category:</label>
-                <input class="p-[5px]" type="text" name="category" placeholder="Category">
+                <input class="p-[5px]" type="text" name="category" placeholder="Category" value="<%= expense.category%>">
             </div>
             
             <div>
                 <label class="text-xl mr-4">Enter Remark:</label>
-                <input class="p-[5px]" type="text" name="remark" placeholder="Remark">
+                <input class="p-[5px]" type="text" name="remark" placeholder="Remark" value="<%= expense.remark%>">
             </div>
 
             <div>
                 <label class="text-xl mr-4">Enter Payment Mode:</label>
-                <input class="p-[5px]" type="text" name="paymentmode" placeholder="Payment Mode">
+                <input class="p-[5px]" type="text" name="paymentmode" placeholder="Payment Mode" value="<%= expense.paymentmode%>">
             </div>
 
         
 
-        <button class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl">Log Expense</button>
+        <button class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl">Update Expense</button>
 
         </form>
     </div>

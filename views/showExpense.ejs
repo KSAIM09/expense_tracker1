@@ -3,6 +3,14 @@
     <%- include("partials/nav")%>
     <div class="flex items-center justify-center w-[full] h-[full] flex-col">
         <h1 class="text-blue-700 text-6xl mt-[10px]"><%=title%></h1>
+        <ul class="mt-10">
+            <% expenses.forEach(expense => { %>
+                <li class="text-xl mb-10">
+                    <%= expense.title %> | <a class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl" href="/expense/details/<%=expense.id%>">Full Details!</a>
+                    
+                </li>
+           <% }) %>
+        </ul>
     </div>
     
 <%- include('partials/footer')%>
