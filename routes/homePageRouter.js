@@ -3,14 +3,14 @@ const router = express.Router();
 
 router.get('/', async(req, res) => {
     try {
-        res.render('homepage', {title: 'Home Page'});
+        res.render('homepage', {title: 'Home Page', user: req.user });
     } catch (error) {
         res.status(500).send(error.message);
     }
 })
 
 router.get('/about', (req, res) => {
-    res.render('aboutPage', {title: 'About Page'});
+    res.render('aboutPage', {title: 'About Page', user: req.user });
 })
 
 module.exports = router;

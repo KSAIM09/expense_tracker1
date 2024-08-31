@@ -1,10 +1,22 @@
 
 
 <%- include('header.ejs')%>
-    <div class="w-full flex gap-[40px] h-[50px] bg-gray-400 mb-[10px] items-center px-[40px] justify-center text-xl">
-        <a class="hover:text-white font-semibold" href="/">Home</a>
-        <a class="hover:text-white font-semibold" href="/expense/create">Create/Log Expense</a>
-        <a class="hover:text-white font-semibold" href="/expense/show">Watch/Show Expense</a>
-        <a class="hover:text-white font-semibold" href="/about">About</a>
+    <div class="w-full flex gap-[40px] h-[60px] mb-[10px] items-center px-[40px] justify-between text-xl" style="background: #1D4ED8;">
+        <div>
+            <img width="50" src="https://cdn-icons-png.flaticon.com/512/5501/5501375.png" alt="" />
+        </div>
+        <div class="flex gap-[40px] px-[40px]  text-xl"> 
+            <% if(user){ %>  
+            <a class="text-white hover:text-black font-semibold" href="/">Home</a>
+            <a class="text-white hover:text-black font-semibold" href="/expense/create">Create/Log Expense</a>
+            <a class="text-white hover:text-black font-semibold" href="/expense/show">Watch/Show Expense</a>
+            <a class="text-white hover:text-black font-semibold" href="/user/profile">Profile</a>
+            
+            <% }else{ %>
+                <a class="text-white hover:text-black font-semibold" href="/">Home</a>
+                <a class="text-white hover:text-black font-semibold" href="/about">About</a>
+                <% } %>
+        </div>
+        
     </div>
 <%- include('footer.ejs')%>
