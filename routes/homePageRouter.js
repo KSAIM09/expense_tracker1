@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const { isLoggedIn } = require('../middlewares/auth.middleware')
 router.get('/', async(req, res) => {
     try {
         res.render('homepage', {title: 'Home Page', user: req.user });
