@@ -15,7 +15,7 @@ passport.use(
 
 // Sign Up
 router.get('/signup', async (req, res) => {
-    res.render('signUpUser', { title: "SignUp", user: req.user })
+    res.render('signUpUser', { title: "Sign-Up", user: req.user })
 });
 
 router.post("/signup", async (req, res) => {
@@ -33,35 +33,37 @@ router.post("/signup", async (req, res) => {
 
 // Sign In
 router.get("/signin", async (req, res) => {
-    res.render("signInUser", { title: "SignIn", user: req.user });
+    res.render("signInUser", { title: "Sign-In", user: req.user });
 });
 
 
 // This can be used for better error handling...
-// router.post("/signin", passport.authenticate("local"), async (req, res) => {
-//     try {
-//         res.redirect("/user/profile");
-//     } catch (error) {
-//         next(error);
-//     }
-// });
+router.post("/signin", passport.authenticate("local"), async (req, res) => {
+    try {
+        req.flash("success", "Successfully Logged In!");
+        res.redirect("/user/profile");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 
 // or this can be use easily
-router.post(
-    "/signin",
-    passport.authenticate("local", {
-        successRedirect: "/user/profile",
-        failureRedirect: "/user/signin",
-    }),
-    (req, res) => {}
-);
+// router.post(
+//     "/signin",
+//     passport.authenticate("local", {
+//         successRedirect: "/user/profile",
+//         failureRedirect: "/user/signin",
+//     }),
+//     (req, res) => {}
+// );
 
 
 // To Show Profile
 router.get('/profile',isLoggedIn, async (req, res) => {
     try {
-        res.render('userProfile', { title: "User Profile", user: req.user})
+        const message = req.flash("success");
+        res.render('userProfile', { title: "User Profile", user: req.user, message: message });
     } catch (error) {
         res.status(500).send(error.message)
     }

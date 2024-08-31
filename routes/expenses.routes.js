@@ -8,7 +8,7 @@ const { isLoggedIn } = require('../middlewares/auth.middleware')
 
 // Create Page
 router.get('/create', isLoggedIn, (req, res) => {
-    res.render('createExpense', { title: "Expense Creater", user: req.user });
+    res.render('createExpense', { title: "Expense Creator", user: req.user });
 });
 
 // Getting Data from Create Page
@@ -19,6 +19,7 @@ router.post('/create',isLoggedIn, async (req, res) => {
         res.redirect('/expense/show');
     } catch (error) {
         res.status(500).send(error.message);
+        
     }
 })
 

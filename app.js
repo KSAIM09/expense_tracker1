@@ -4,12 +4,17 @@ dotenv.config('./.env');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
+var cookieParser = require("cookie-parser");
 
 // passport required with session and userSchema
 const passport = require("passport");
 const session = require("express-session");
 const User = require('./models/user.schema')
+
 const app = express();
+
+//require Flash Message 
+var flash = require('connect-flash');
 
 // require routes
 const homePageRouter = require('./routes/homePageRouter');
@@ -41,6 +46,10 @@ app.use(
         secret: process.env.EXPRESS_SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
+        // cookie: {
+        //     secure: false,
+        //     maxAge: 1000 * 60 * 60 * 24,
+        // },
     })
 );
 app.use(passport.initialize());
@@ -48,6 +57,8 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Connect-flash 
+app.use(flash());
 
 
 // Routes
