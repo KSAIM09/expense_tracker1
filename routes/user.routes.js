@@ -4,12 +4,28 @@ const User = require("../models/user.schema");
 
 // authmiddleware
 const { isLoggedIn } = require('../middlewares/auth.middleware')
+
+const upload = require("../middlewares/multimedia.middleware");
+const fs = require("fs");
+const path = require('path');
+
+
+
+
+
+
+
 // Passport auth to User
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+
 passport.use(new LocalStrategy(User.authenticate()));
 // passport.use(User.createStrategy()); // crediential other than username 
+
+
+
+
 
 // Sign Up
 router.get('/signup', async (req, res) => {
@@ -121,8 +137,12 @@ router.post('/reset-password', isLoggedIn, async (req, res) => {
 // Delete Account
 router.get('/delete-account', isLoggedIn, async (req, res) => {
     try {
-        await User.findByIdAndDelete(req.user._id)
+        const user = await User.findByIdAndDelete(req.user._id)
+        
         // code to delete profile pic
+        if(user.avatar != "default.png") {
+            fs.unlinkSync(`public/images/${user.avatar}`);
+        }
         // code to delete all relaated expenses
 
         res.redirect("/user/signin");
@@ -149,6 +169,37 @@ router.post("/update", isLoggedIn, async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+
+
+
+const filePath = path.join(__dirname, 'public', `images`, 'default.png')
+// To uPDATE user Avatar
+router.post(
+    "/avatar",
+    isLoggedIn,
+    upload.single("avatar"),
+    async (req, res) => {
+        try {
+            // if (req.user.avatar != "default.png") {
+            //     fs.unlinkSync(`public/images/${req.user.avatar}`);
+            // }
+
+            fs.unlink(filePath, (err) => {
+                if (err) {
+                    console.error("Error deleting file:", err);
+                } else {
+                    console.log("File deleted successfully");
+                }
+            })
+            req.user.avatar = req.file.filename;
+            await req.user.save();
+            res.redirect("/user/update");
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
+    }
+);
 
 
 module.exports = router;

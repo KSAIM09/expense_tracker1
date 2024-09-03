@@ -5,30 +5,30 @@
 
 <div class="flex justify-center items-center">
     <div class="flex flex-col w-[680px] justify-between items-center">
-        <h1 class="text-blue-700 text-6xl mt-[10px] mb-[20px]"><%=title%></h1>
+        <h1 class="text-blue-700 text-6xl mt-[10px] mb-[40px]"><%=title%></h1>
 
-        <div class="profile">
+        <div class="profile mb-8">
             <img
                 class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover object-center"
-                src="<%= user.avatar%>"
+                src="/images/<%= user.avatar%>"
                 alt=""
             />
-            <form class="hidden avatar-form" action="/user/avatar" method="post">
+            <form class="hidden avatar-form" action="/user/avatar" method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" />
             </form>
         </div>
 
 
-    <form action="/user/update" method="post" class="flex flex-col justify-center items-start w-[400px] gap-[20px] h-[300px]">
+    <form action="/user/update" method="post" class="flex flex-col justify-center items-start w-[450px] gap-[20px] h-[280px]">
 
         <div>
-            <label class="text-xl mr-4">Enter Username:</label>
-            <input class="p-[5px]" type="text" name="username" placeholder="Username" value="<%= user.username%>">
+            <label class="text-xl mr-4">Enter New Username:</label>
+            <input class="p-[5px] border-b-2 text-xl " type="text" name="username" placeholder="Username" value="<%= user.username%>">
         </div>
         
         <div>
-            <label class="text-xl mr-4">Enter Email:</label>
-            <input class="p-[5px]" type="email" name="email" placeholder="john@doe.com" value="<%= user.email%>">
+            <label class="text-xl mr-4">Enter New Email:</label>
+            <input class="p-[5px] border-b-2 text-xl " type="email" name="email" placeholder="john@doe.com" value="<%= user.email%>">
         </div>
 
 
