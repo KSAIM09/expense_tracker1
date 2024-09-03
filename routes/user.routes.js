@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const UserSchema = require("../models/user.schema");
+const User = require("../models/user.schema");
 
 // authmiddleware
 const { isLoggedIn } = require('../middlewares/auth.middleware')
 // Passport auth to User
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-passport.use(
-    new LocalStrategy(UserSchema.authenticate())
-);
 
+passport.use(new LocalStrategy(User.authenticate()));
 // passport.use(User.createStrategy()); // crediential other than username 
 
 // Sign Up
@@ -21,7 +19,7 @@ router.get('/signup', async (req, res) => {
 router.post("/signup", async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        await UserSchema.register({ username, email }, password);
+        await User.register({ username, email }, password);
         // await UserSchema.authenticate(username, password);
         // res.redirect("/user/profile");
         res.redirect("/user/signin");
@@ -78,7 +76,79 @@ router.get('/signout', isLoggedIn, async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message)
     }
+});
+
+// .............x..................x..................x...............................x
+
+// To Reset Password, Delete Account, Update user Profile .........
+
+router.get('/reset-password', isLoggedIn, async (req, res) => {
+    try {
+        res.render('resetPassword', { title: "Reset Password", user: req.user });
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+router.post('/reset-password', isLoggedIn, async (req, res) => {
+    try {
+        await req.user.changePassword(
+            req.body.oldpassword,
+            req.body.newpassword
+        )
+        await req.user.save();
+        req.flash("success", "Password Changed!");
+        res.redirect('/user/profile');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
+
+
+
+// router.post('/reset-password', isLoggedIn, async (req, res) => {
+//     try {
+//         // Assuming req.user is a Passport user object
+//         await req.user.changePassword(req.body.oldpassword, req.body.newpassword);
+//         await req.user.save(); // This save() should only save the password, not the username
+//         res.redirect('/user/profile');
+//     } catch (error) {
+//         res.status(500).send(error.message);
+//     }
+// });
+
+
+// Delete Account
+router.get('/delete-account', isLoggedIn, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.user._id)
+        // code to delete profile pic
+        // code to delete all relaated expenses
+
+        res.redirect("/user/signin");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+
+// To update User Profile
+router.get("/update", isLoggedIn, async (req, res) => {
+    res.render("updateUser", {
+        title: "Update User",
+        user: req.user,
+    });
+});
+
+router.post("/update", isLoggedIn, async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.user._id, req.body);
+        req.flash("success", "User Details Updated!");
+        res.redirect("/user/profile");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 
 module.exports = router;
