@@ -155,7 +155,7 @@ router.get('/delete-account', isLoggedIn, async (req, res) => {
 // To update User Profile
 router.get("/update", isLoggedIn, async (req, res) => {
     res.render("updateUser", {
-        title: "Update User",
+        title: "Edit Profile",
         user: req.user,
     });
 });

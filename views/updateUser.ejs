@@ -11,7 +11,7 @@
                 src="/images/<%= user.avatar %>"
                 alt="User Avatar"
             />
-            <div class="absolute bottom-[-20px] text-sm text-[#EEEEEE] bg-[#222831] px-3 py-1 rounded-lg shadow-lg mt-5">
+            <div class="absolute bottom-[-20px] text-sm text-[#EEEEEE] bg-[#222831] px-3 py-1 rounded-lg shadow-lg mt-5 opacity-0 transition-opacity duration-200 avatar-tooltip">
                 Click on the image to change your avatar
             </div>
             <form class="hidden avatar-form" action="/user/avatar" method="post" enctype="multipart/form-data">
@@ -22,12 +22,12 @@
         <form action="/user/update" method="post" class="flex flex-col gap-6 text-[#EEEEEE]">
 
             <div class="flex flex-col gap-2">
-                <label class="text-lg font-medium" for="username">Enter New Username:</label>
+                <label class="text-lg font-medium" for="username">Edit Username:</label>
                 <input id="username" class="p-3 bg-[#393E46] border-b-2 border-gray-500 rounded text-[#EEEEEE]" type="text" name="username" placeholder="Username" value="<%= user.username %>">
             </div>
             
             <div class="flex flex-col gap-2">
-                <label class="text-lg font-medium" for="email">Enter New Email:</label>
+                <label class="text-lg font-medium" for="email">Edit Email:</label>
                 <input id="email" class="p-3 bg-[#393E46] border-b-2 border-gray-500 rounded text-[#EEEEEE]" type="email" name="email" placeholder="john@doe.com" value="<%= user.email %>">
             </div>
 
@@ -51,13 +51,22 @@
     const avatarPreview = document.querySelector(".avatar-preview");
     const avatarForm = document.querySelector(".avatar-form");
     const avatarInput = document.querySelector(".avatar-form input");
-    
+    const tooltip = document.querySelector(".avatar-tooltip");
+
     avatarPreview.addEventListener("click", () => {
         avatarInput.click();
     });
-    
+
     avatarInput.addEventListener("change", () => {
         avatarForm.submit();
+    });
+
+    avatarPreview.addEventListener("mouseenter", () => {
+        tooltip.style.opacity = "1";
+    });
+
+    avatarPreview.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = "0";
     });
 </script>
 

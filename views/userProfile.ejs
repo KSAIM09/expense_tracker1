@@ -2,10 +2,10 @@
 <%- include("partials/nav")%>
 
 <div class="flex items-center flex-col min-h-screen bg-[#222831] p-8">
-    <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-10"><%= title %></h1>
+    <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-10">Welcome <%= user.username%></h1>
 
-    <div id="message-container" class="relative w-[300px] mb-10">
-        <div id="message" class="bg-blue-500 text-white p-3 rounded-md flex justify-center items-center">
+    <div id="message-container" class="relative w-[200px] mb-10">
+        <div id="message" class="bg-[#00ADB5] text-white p-3 rounded-md flex justify-center items-center">
             <span><%= message %></span>
             <!-- <button id="close-message" class="text-white bg-transparent border-none cursor-pointer">X</button> -->
         </div>
@@ -15,7 +15,7 @@
     <div class="flex flex-col w-[680px] p-8 bg-[#393E46] rounded-lg shadow-lg items-center">
         <div class="profile mb-8">
             <img
-                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover object-center"
+                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover cursor-pointer border-4 border-[#00ADB5] hover:border-[#00CED1] transition duration-200 ease-in-out"
                 src="/images/<%= user.avatar %>"
                 alt="User Avatar"
             />
@@ -39,7 +39,7 @@
 
     <!-- Action Buttons -->
     <div class="mt-8 flex gap-x-6">
-        <a class="text-white p-3 bg-orange-600 hover:bg-orange-800 rounded-lg text-lg font-semibold transition duration-200 ease-in-out" href="/user/update">Update Info</a>
+        <a class="text-white p-3 bg-orange-600 hover:bg-orange-800 rounded-lg text-lg font-semibold transition duration-200 ease-in-out" href="/user/update">Edit Profile</a>
         <a class="text-white p-3 bg-red-600 hover:bg-red-800 rounded-lg text-lg font-semibold transition duration-200 ease-in-out" href="/user/signout">Sign-Out</a>
     </div>
 
