@@ -1,76 +1,65 @@
 <%- include("partials/header")%>
 <%- include("partials/nav")%>
 
-    
+<div class="flex items-center flex-col h-[680px] bg-[#222831] p-8">
+    <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-10"><%= title %></h1>
 
-    <div class="flex items-center flex-col w-full h-full">
-        <h1 class="text-blue-700 text-6xl mt-10"><%= title %></h1>
-
-        <div id="message-container" class="relative w-[300px] mt-[20px]">
-            <div id="message" class="bg-blue-500 text-white p-2 rounded-md flex justify-center items-center">
-                <%= message %> 
-                <!-- <button id="close-message" class=" text-white p-1">X</button> -->
-            </div>
+    <div id="message-container" class="relative w-[300px] mb-10">
+        <div id="message" class="bg-blue-500 text-white p-3 rounded-md flex justify-center items-center">
+            <span><%= message %></span>
+            <!-- <button id="close-message" class="text-white bg-transparent border-none cursor-pointer">X</button> -->
         </div>
-
-
-        <!--  -->
-
-        <div class="flex flex-col w-[680px] justify-between items-center mt-10">
-        
-    
-            <div class="profile">
-                <img
-                    class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover object-center"
-                    src="/images/<%=user.avatar%>"
-                    alt=""
-                />
-                <form class="hidden avatar-form" action="/user/avatar" method="post">
-                    <input type="file" name="avatar" />
-                </form>
-            </div>
-    
-    
-        <div class="flex flex-col justify-center items-center w-[400px] gap-[20px] h-[150px]">
-    
-            <div class="flex items-center gap-1">
-                <label class="text-xl mr-4">Username:</label>
-                <p><%= user.username%></p>
-            </div>
-            
-            <div class="flex items-center gap-1">
-                <label class="text-xl mr-4">Email:</label>
-                <p><%= user.email%></p>
-            </div>
-    
-        </div>
-        
-        </div>
-
-        <!--  -->
-
-        <div class="mt-7 flex gap-x-4 items-center justify-center">
-            <a class="text-white p-3 bg-orange-600 hover:bg-orange-800 rounded-lg text-2xl  text-center" href="/user/update">Update Info</a>
-            <a class="text-white p-3 bg-red-600 hover:bg-red-800 rounded-lg text-2xl  text-center" href="/user/signout">Sign-Out</a>
-        </div>
-
-        
     </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const messageElement = document.getElementById("message-container");
-                const closeButton = document.getElementById("close-message");
+    <!-- Profile Section -->
+    <div class="flex flex-col w-[680px] p-8 bg-[#393E46] rounded-lg shadow-lg items-center">
+        <div class="profile mb-8">
+            <img
+                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover object-center"
+                src="/images/<%= user.avatar %>"
+                alt="User Avatar"
+            />
+            <form class="hidden avatar-form" action="/user/avatar" method="post" enctype="multipart/form-data">
+                <input type="file" name="avatar" />
+            </form>
+        </div>
 
-                // Hide the message after 5 seconds
-                setTimeout(() => {
-                    messageElement.style.display = 'none';
-                }, 5000);
+        <div class="flex flex-col w-[400px] gap-6 text-[#EEEEEE]">
+            <div class="flex items-center gap-2">
+                <label class="text-lg font-medium" for="username">Username:</label>
+                <p class="text-lg"><%= user.username %></p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <label class="text-lg font-medium" for="email">Email:</label>
+                <p class="text-lg"><%= user.email %></p>
+            </div>
+        </div>
+    </div>
 
-                // Allow manual closing of the message
+    <!-- Action Buttons -->
+    <div class="mt-8 flex gap-x-6">
+        <a class="text-white p-3 bg-orange-600 hover:bg-orange-800 rounded-lg text-lg font-semibold transition duration-200 ease-in-out" href="/user/update">Update Info</a>
+        <a class="text-white p-3 bg-red-600 hover:bg-red-800 rounded-lg text-lg font-semibold transition duration-200 ease-in-out" href="/user/signout">Sign-Out</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const messageElement = document.getElementById("message-container");
+            const closeButton = document.getElementById("close-message");
+
+            // Hide the message after 5 seconds
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+
+            // Allow manual closing of the message
+            if (closeButton) {
                 closeButton.addEventListener("click", function() {
                     messageElement.style.display = 'none';
                 });
-            });
-        </script>
+            }
+        });
+    </script>
+    
 <%- include("partials/footer")%>

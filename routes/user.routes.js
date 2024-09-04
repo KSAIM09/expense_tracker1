@@ -202,4 +202,58 @@ router.post(
 );
 
 
+// .............x..................x..................x...............................x
+
+// Forget password and OTP 
+
+// Forget Password By Email
+router.get('/forget-password', (req, res) => {
+    res.render("forgetPasswordEmail", { title: "Forget Password Email", user: req.user });
+});
+
+router.post('/forget-password', async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if(!user) return res.status(500).send("User not Found",error.message);
+         // send email to user with otp
+        // and save the same otp to database
+        res.redirect(`/user/forget-password/${user._id}`);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// Forget Password By OTP
+router.get("/forget-password/:id",  (req, res) => {
+    res.render("forgetPasswordOtp", { title: "Enter OTP", user: req.user, id: req.params.id });
+});
+
+router.post("/forget-password/:id",  async(req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        // compare the req.body.otp with the otp in database
+        // if matched redirect to password page else ERROR
+        res.redirect(`/user/set-password/${user._id}`);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// SetNewPassword Route
+router.get('/set-password/:id',  (req, res) => {
+    res.render('setPassword', { title: "Set Password", user: req.user, id: req.params.id });
+});
+
+router.post('/set-password/:id',async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        await user.setPassword(req.body.password);
+        await user.save();
+        // req.flash("success", "Password Set Successfully!");
+        res.redirect('/user/signin');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
+
 module.exports = router;

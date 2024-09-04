@@ -1,15 +1,15 @@
 
-
 <%- include('partials/header')%>
-    <%- include("partials/nav")%>
-    <div class="flex items-center flex-col  w-[full] h-[full]">
-        <h1 class="text-blue-700 text-6xl mt-[10px]"><%=title%></h1>
-        
-        <% if(user){%>
-            <p class="text-white p-4 bg-green-600 hover:bg-green-900 rounded-lg text-4xl mt-[50px]">Already Signed In</p>
-        <%} else {%>
-        <a class="text-white p-4 bg-blue-700 hover:bg-blue-900 rounded-lg text-4xl mt-[50px]" href="/user/signin">Click to Get Started!</a>
-        <%}%>
-    </div>
-   
+<%- include("partials/nav")%>
+
+<div class="flex flex-col items-center justify-center h-[680px] bg-[#222831] p-8">
+    <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-8"><%= title %></h1>
+
+    <% if(user){ %>
+        <p class="text-white p-4 bg-green-600 rounded-lg text-2xl font-semibold hover:bg-green-800 transition duration-200 ease-in-out">Already Signed In</p>
+    <% } else { %>
+        <a class="text-white p-4 bg-blue-700 rounded-lg text-2xl font-semibold hover:bg-blue-900 transition duration-200 ease-in-out" href="/user/signin">Click to Get Started!</a>
+    <% } %>
+</div>
+
 <%- include('partials/footer')%>

@@ -1,16 +1,19 @@
-
 <%- include('partials/header')%>
-    <%- include("partials/nav")%>
-    <div class="flex items-center justify-center w-[full] h-[full] flex-col">
-        <h1 class="text-blue-700 text-6xl mt-[10px]"><%=title%></h1>
-        <ul class="mt-10">
+<%- include("partials/nav")%>
+
+<div class="flex items-center justify-center h-[680px] bg-[#222831]">
+    <div class="flex flex-col w-[640px] justify-center items-center p-8 bg-[#393E46] rounded-lg shadow-lg">
+        <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-8"><%= title %></h1>
+
+        <ul class="w-full">
             <% expenses.forEach(expense => { %>
-                <li class="text-xl mb-10">
-                    <%= expense.title %> | <a class="p-[10px] bg-blue-700 rounded-xl hover:bg-blue-900 text-white text-xl" href="/expense/details/<%=expense.id%>">Full Details!</a>
-                    
+                <li class="flex justify-between items-center text-lg text-[#EEEEEE] mb-6 bg-[#2C2C34] p-4 rounded-lg">
+                    <span><%= expense.title %></span>
+                    <a class="p-3 bg-blue-700 rounded-xl hover:bg-blue-900 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/expense/details/<%= expense.id %>">Full Details!</a>
                 </li>
-           <% }) %>
+            <% }) %>
         </ul>
     </div>
-    
+</div>
+
 <%- include('partials/footer')%>

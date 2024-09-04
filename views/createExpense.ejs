@@ -1,42 +1,46 @@
-
 <%- include('partials/header')%>
-    <%- include("partials/nav")%>
-    <div class="flex items-center justify-center w-[full] h-[full] flex-col">
-        <h1 class="text-blue-700 text-6xl mt-[10px] mb-[20px]"><%=title%></h1>
+<%- include("partials/nav")%>
 
-        <form action="/expense/create" method="post" class="flex flex-col justify-center items-start w-[480px] gap-[10px]">
+<div class="flex items-center justify-center h-[680px] bg-[#222831]">
+    <div class="flex flex-col w-[640px] justify-center items-center p-8 bg-[#393E46] rounded-lg shadow-lg">
+        <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-8"><%= title %></h1>
 
-            <div>
-                <label class="text-xl mr-4">Enter Title:</label>
-                <input class="p-[5px]" type="text" name="title" placeholder="Title">
-            </div>
-            
-            <div>
-                <label class="text-xl mr-4">Enter Amount:</label>
-                <input class="p-[5px]" type="number" name="amount" placeholder="Amount">
-            </div>
-        
-            <div>
-                <label class="text-xl mr-4">Enter Category:</label>
-                <input class="p-[5px]" type="text" name="category" placeholder="Category">
-            </div>
-            
-            <div>
-                <label class="text-xl mr-4">Enter Remark:</label>
-                <input class="p-[5px]" type="text" name="remark" placeholder="Remark">
+        <form action="/expense/create" method="post" class="flex flex-col justify-center w-full gap-6 text-[#EEEEEE]">
+
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <label class="text-lg font-medium">Enter Title:</label>
+                <input class="p-3 bg-transparent border border-gray-500 rounded" type="text" name="title" placeholder="Title">
             </div>
 
-            <div>
-                <label class="text-xl mr-4">Enter Payment Mode:</label>
-                <input class="p-[5px]" type="text" name="paymentmode" placeholder="Payment Mode">
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <label class="text-lg font-medium">Enter Amount:</label>
+                <input class="p-3 bg-transparent border border-gray-500 rounded" type="number" name="amount" placeholder="Amount">
             </div>
 
-        
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <label class="text-lg font-medium">Enter Category:</label>
+                <input class="p-3 bg-transparent border border-gray-500 rounded" type="text" name="category" placeholder="Category">
+            </div>
 
-        <button class="p-[10px] bg-blue-700 rounded-xl hover:bg-blue-900 text-white text-xl">Log Expense</button>
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <label class="text-lg font-medium">Enter Remark:</label>
+                <input class="p-3 bg-transparent border border-gray-500 rounded" type="text" name="remark" placeholder="Remark">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <label class="text-lg font-medium">Enter Payment Mode:</label>
+                <select class="p-3 bg-[#393E46] text-[#EEEEEE] border border-gray-500 rounded appearance-none">
+                    <option class="bg-[#393E46] text-[#EEEEEE]" value="UPI">UPI</option>
+                    <option class="bg-[#393E46] text-[#EEEEEE]" value="Cash">Cash</option>
+                    <option class="bg-[#393E46] text-[#EEEEEE]" value="Card">Card</option>
+                    <option class="bg-[#393E46] text-[#EEEEEE]" value="Cheque">Cheque</option>
+                </select>
+            </div>
+
+            <button class="p-3 bg-[#00ADB5] rounded-xl hover:bg-[#17757a] text-white text-lg font-semibold mt-6">Log Expense</button>
 
         </form>
     </div>
-    
-    
+</div>
+
 <%- include('partials/footer')%>

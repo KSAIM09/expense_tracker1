@@ -1,9 +1,16 @@
-
 <%- include('partials/header')%>
-    <%- include("partials/nav")%>
-    <div class="flex items-center justify-center w-[full] h-[full] flex-col">
-        <h1 class="text-blue-700 text-6xl mt-[10px]"><%=title%></h1>
-        <p class="text-blue-900 text-4xl mt-[10px]">Welcome to <%=title%>, Here you can track your expenses.</p>
-    </div>
-    
+<%- include("partials/nav")%>
+
+<div class="flex items-center justify-center w-full h-[680px] flex-col bg-[#222831] p-10">
+    <h1 class="text-[#EEEEEE] text-6xl font-bold mt-10 mb-6"><%= title %></h1>
+    <p class="text-[#00ADB5] text-2xl text-center mb-8">
+        Welcome to <%= title %>, your personal tool to effortlessly track and manage your expenses.
+    </p>
+    <p class="text-[#EEEEEE] text-xl text-center max-w-[700px]">
+        With this app, you can log every expense, categorize them, and stay on top of your finances. 
+        Whether it's daily expenses, monthly bills, or one-time purchases, our tracker helps you keep 
+        an eye on where your money goes. Start logging your expenses today and take control of your budget!
+    </p>
+</div>
+
 <%- include('partials/footer')%>

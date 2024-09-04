@@ -1,47 +1,43 @@
-
-
 <%- include("partials/header")%>
-    <%- include("partials/nav")%>
-        <div class="flex justify-center items-center" >
-            <div class="flex flex-col w-[680px] justify-center items-center">
-                <h1 class="text-blue-700 text-6xl mt-[10px]"><%=title%></h1>
-                <br>
-                <div class="flex flex-col gap-4 w-[540px] justify-center">
+<%- include("partials/nav")%>
+<div class="flex justify-center items-center h-[680px] bg-[#222831]">
+    <div class="flex flex-col w-[680px] justify-center items-center p-8 bg-[#393E46] rounded-lg shadow-lg">
+        <h1 class="text-[#EEEEEE] text-4xl font-semibold mb-8"><%= title %></h1>
 
-                    <div class="flex justify-between">
-                        <p class="underline text-xl">Title:</p>
-                        <p><%= expense.title %></p>
-                    </div>
+        <div class="flex flex-col gap-6 w-[540px]">
 
-                    <div class="flex justify-between">
-                        <p class="underline text-xl">Amount:</p>
-                        <p><%= expense.amount %> rupees</p>
-                    </div>
+            <!-- Aligning labels and values with better spacing and text styling -->
+            <div class="grid grid-cols-2 gap-4">
+                <p class="text-lg font-medium text-[#EEEEEE]">Title:</p>
+                <p class="text-lg text-[#EEEEEE] text-end"><%= expense.title %></p>
+            </div>
 
-                    <div class="flex justify-between">
-                        <p class="underline text-xl">Category:</p>
-                        <p><%= expense.category %></p>
-                    </div>
-                    
-                    <div class="flex justify-between">
-                        <p class="underline text-xl">Remark:</p>
-                        <p><%= expense.remark %></p>
-                    </div>
-                    
-                    <div class="flex justify-between">
-                        <p class="underline text-xl">Payment Mode:</p>
-                        <p><%= expense.paymentmode %></p>
-                    </div>
-                
-                    
-                    <a class="p-[10px] bg-red-600 rounded-xl hover:bg-red-900 text-white text-xl text-center" href="/expense/delete/<%= expense._id%>">Delete</a>
-                    <a class="p-[10px] bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-xl text-center" href="/expense/update/<%= expense._id%>">Edit</a>
-                </div>
-                
+            <div class="grid grid-cols-2 gap-4">
+                <p class="text-lg font-medium text-[#EEEEEE]">Amount:</p>
+                <p class="text-lg text-[#EEEEEE] text-end"><%= expense.amount %> rupees</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <p class="text-lg font-medium text-[#EEEEEE]">Category:</p>
+                <p class="text-lg text-[#EEEEEE] text-end"><%= expense.category %></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <p class="text-lg font-medium text-[#EEEEEE]">Remark:</p>
+                <p class="text-lg text-[#EEEEEE] text-end"><%= expense.remark %></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <p class="text-lg font-medium text-[#EEEEEE]">Payment Mode:</p>
+                <p class="text-lg text-[#EEEEEE] text-end"><%= expense.paymentmode %></p>
+            </div>
+
+            <!-- Buttons are centered and given a better style -->
+            <div class="flex justify-center gap-4 mt-6">
+                <a class="px-6 py-3 bg-red-600 rounded-xl hover:bg-red-800 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/expense/delete/<%= expense._id %>">Delete</a>
+                <a class="px-6 py-3 bg-cyan-500 rounded-xl hover:bg-cyan-700 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/expense/update/<%= expense._id %>">Edit</a>
             </div>
         </div>
-        
-        
-
-        <!--  -->
+    </div>
+</div>
 <%- include("partials/footer")%>

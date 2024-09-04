@@ -1,65 +1,61 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
 
-<%- include("partials/header")%> <%- include("partials/nav")%>
+<div class="flex justify-center items-center h-[680px] bg-[#222831] p-8">
+    <div class="flex flex-col w-[680px] p-8 bg-[#393E46] rounded-lg shadow-lg">
+        <h1 class="text-[#eeeeee] text-4xl font-semibold mb-10"><%= title %></h1>
 
-
-
-<div class="flex justify-center items-center">
-    <div class="flex flex-col w-[680px] justify-between items-center">
-        <h1 class="text-blue-700 text-6xl mt-[10px] mb-[40px]"><%=title%></h1>
-
-        <div class="profile mb-8">
+        <div class="profile mb-8 flex flex-col items-center">
             <img
-                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover object-center"
-                src="/images/<%= user.avatar%>"
-                alt=""
+                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover cursor-pointer"
+                src="/images/<%= user.avatar %>"
+                alt="User Avatar"
             />
             <form class="hidden avatar-form" action="/user/avatar" method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" />
             </form>
         </div>
 
+        <form action="/user/update" method="post" class="flex flex-col gap-6 text-[#EEEEEE]">
 
-    <form action="/user/update" method="post" class="flex flex-col justify-center items-start w-[450px] gap-[20px] h-[280px]">
+            <div class="flex flex-col gap-2">
+                <label class="text-lg font-medium" for="username">Enter New Username:</label>
+                <input id="username" class="p-3 bg-[#393E46] border-b-2 border-gray-500 rounded text-[#EEEEEE]" type="text" name="username" placeholder="Username" value="<%= user.username %>">
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <label class="text-lg font-medium" for="email">Enter New Email:</label>
+                <input id="email" class="p-3 bg-[#393E46] border-b-2 border-gray-500 rounded text-[#EEEEEE]" type="email" name="email" placeholder="john@doe.com" value="<%= user.email %>">
+            </div>
 
-        <div>
-            <label class="text-xl mr-4">Enter New Username:</label>
-            <input class="p-[5px] border-b-2 text-xl " type="text" name="username" placeholder="Username" value="<%= user.username%>">
-        </div>
-        
-        <div>
-            <label class="text-xl mr-4">Enter New Email:</label>
-            <input class="p-[5px] border-b-2 text-xl " type="email" name="email" placeholder="john@doe.com" value="<%= user.email%>">
-        </div>
+            <button class="px-6 py-3 bg-blue-700 rounded-xl hover:bg-blue-900 text-white text-lg font-semibold transition duration-200 ease-in-out">
+                Update Profile
+            </button>
 
-
-
-
-        <button class="p-[10px] bg-blue-700 rounded-xl hover:bg-blue-900 text-white text-xl">Update Profile</button>
-
-        <div class="mt-7 flex gap-x-4">
-            <a class="p-[10px] bg-yellow-500 rounded-xl hover:bg-yellow-700 text-white text-xl" href="/user/reset-password">Reset Password</a>
-            <a class="p-[10px] bg-red-600 rounded-xl hover:bg-red-900 text-white text-xl" href="/user/delete-account">Delete Account</a>
-        </div>
-
-        
-
-        
-        
-    </form>
+            <div class="mt-6 flex gap-4">
+                <a class="px-6 py-3 bg-yellow-500 rounded-xl hover:bg-yellow-700 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/user/reset-password">
+                    Reset Password
+                </a>
+                <a class="px-6 py-3 bg-red-600 rounded-xl hover:bg-red-900 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/user/delete-account">
+                    Delete Account
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 
-            <script>
-                const avatarPreview = document.querySelector(".avatar-preview");
-                const avatarForm = document.querySelector(".avatar-form");
-                const avatarInput = document.querySelector(".avatar-form input");
-                avatarPreview.addEventListener("click", () => {
-                    avatarInput.click();
-                });
-                avatarInput.addEventListener("change", () => {
-                    avatarForm.submit();
-                });
-            </script>
+<script>
+    const avatarPreview = document.querySelector(".avatar-preview");
+    const avatarForm = document.querySelector(".avatar-form");
+    const avatarInput = document.querySelector(".avatar-form input");
+    
+    avatarPreview.addEventListener("click", () => {
+        avatarInput.click();
+    });
+    
+    avatarInput.addEventListener("change", () => {
+        avatarForm.submit();
+    });
+</script>
 
-<!--  -->
 <%- include("partials/footer")%>
