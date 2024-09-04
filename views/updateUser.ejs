@@ -1,16 +1,19 @@
 <%- include("partials/header")%>
 <%- include("partials/nav")%>
 
-<div class="flex justify-center items-center h-[680px] bg-[#222831] p-8">
+<div class="flex justify-center items-center min-h-screen bg-[#222831] p-8">
     <div class="flex flex-col w-[680px] p-8 bg-[#393E46] rounded-lg shadow-lg">
-        <h1 class="text-[#eeeeee] text-4xl font-semibold mb-10"><%= title %></h1>
+        <h1 class="text-[#eeeeee] text-4xl font-semibold mb-10 text-center"><%= title %></h1>
 
-        <div class="profile mb-8 flex flex-col items-center">
+        <div class="profile mb-8 flex flex-col items-center relative">
             <img
-                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover cursor-pointer"
+                class="avatar-preview w-[15vh] h-[15vh] rounded-full object-cover cursor-pointer border-4 border-[#00ADB5] hover:border-[#00CED1] transition duration-200 ease-in-out"
                 src="/images/<%= user.avatar %>"
                 alt="User Avatar"
             />
+            <div class="absolute bottom-[-20px] text-sm text-[#EEEEEE] bg-[#222831] px-3 py-1 rounded-lg shadow-lg mt-5">
+                Click on the image to change your avatar
+            </div>
             <form class="hidden avatar-form" action="/user/avatar" method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" />
             </form>
@@ -32,7 +35,7 @@
                 Update Profile
             </button>
 
-            <div class="mt-6 flex gap-4">
+            <div class="mt-4 flex gap-4">
                 <a class="px-6 py-3 bg-yellow-500 rounded-xl hover:bg-yellow-700 text-white text-lg font-semibold transition duration-200 ease-in-out" href="/user/reset-password">
                     Reset Password
                 </a>

@@ -1,16 +1,16 @@
 <%- include('header.ejs')%>
 
-<div class="w-full flex gap-[40px] h-[60px] items-center px-[40px] justify-between text-xl" style="background: #393E46;">
+<div class="w-full flex gap-[40px] h-[60px] items-center px-[40px] justify-between text-xl " style="background: #393E46;">
     <div class="flex gap-4 items-center text-white font-semibold">
-        <img width="50" src="https://cdn-icons-png.flaticon.com/512/5501/5501375.png" alt="Expense Tracker Logo" />
-        <p>Expense Tracker</p>
+        <img width="40px" src="https://cdn-icons-png.flaticon.com/512/5501/5501375.png" alt="Expense Tracker Logo" />
+        <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/">Expense Tracker</a>
     </div>
     
     <div class="flex gap-[40px] px-[40px] text-xl">
         <% if(user) { %>  
             <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/">Home</a>
-            <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/expense/create">Create/Log Expense</a>
-            <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/expense/show">Watch/Show Expense</a>
+            <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/expense/create">Create Expense</a>
+            <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/expense/show">Show Expense</a>
             <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/user/profile">Profile</a>
         <% } else { %>
             <a class="text-white hover:text-[#00ADB5] font-semibold transition duration-200 ease-in-out" href="/">Home</a>
